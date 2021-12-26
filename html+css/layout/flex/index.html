@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+  </head>
+  <body>
+    <div class="wrap text1">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+    <div class="wrap text2">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+    <div class="wrap text3">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+    <div class="wrap text4">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+    <div class="text5">
+      <div><p></p></div>
+      <div><p></p></div>
+      <div><p></p></div>
+      <div><p></p></div>
+      <div><p></p></div>
+    </div>
+    <style>
+      .wrap {
+        display: flex;
+        height: 200px;
+        width: 200px;
+        border: 2px solid orange;
+      }
+      .text1 {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+      .text2 {
+        flex-flow: column-reverse wrap-reverse;
+        align-items: stretch;
+      }
+      .text2 > div {
+        width: auto !important;
+        height: auto !important;
+      }
+      .text3 {
+        width: 1000px;
+        height: 500px;
+        justify-content: space-evenly;
+        flex-flow: column;
+        align-items: center;
+      }
+      .text4 {
+        width: 200px;
+        height: 200px;
+        justify-content: start;
+        align-content: stretch;
+        flex-flow: row wrap;
+      }
+      .text4 > div {
+        height: auto !important;
+      }
+      .wrap > div {
+        background: pink;
+        width: 50px;
+        height: 50px;
+        box-sizing: border-box;
+        border: 2px solid green;
+      }
+      .wrap > div {
+        flex: 1 2;
+      }
+      .text5 {
+        display: flex;
+        height: 200px;
+        width: 100%;
+        border: 1px solid rgb(255, 90, 0);
+        justify-content: start;
+        align-items: center;
+        align-content: center;
+      }
+      .text5 > div {
+        background: pink;
+        flex: 1 2 150px;
+        height: 100px;
+        border: 1px solid #fff;
+      }
+      .text5 > div:first-child {
+        flex: 0 0 200px;
+      }
+      .text5 > div:last-child {
+        flex-shrink: 0;
+        flex-grow: 5;
+      }
+      .text5 > div:nth-child(3){
+        flex-shrink: 1;
+      }
+      .text5 p {
+        width: 100px;
+        height: 50px;
+        background: chartreuse;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid</title>
+  </head>
+  <body>
+    <div class="warp">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+    <style>
+      .warp {
+        width: 500px;
+        height: 500px;
+        display: grid;
+        /* grid-template: repeat(auto-fit, minmax(20px, 1fr)) / 100px; */
+        /* grid-template-columns: fit-content(300px) fit-content(300px) 1fr; */
+        grid-template: [n1] 1fr [n2] 1fr [n3] 1fr / [n1] 1fr [n2] 1fr [n3] 1fr;
+        gap: 1px;
+        /* place-items: start center; */
+        /* justify-items: center;
+        align-items: start; */
+        /* place-content: space-evenly space-around;
+        border: 1px solid rgba(100, 200, 255, 1);
+        justify-content: space-around;
+        align-content:space-evenly; */
+        /* grid-auto-rows: 150px;
+        grid-auto-columns: 150px; */
+        /* grid-auto-flow: column; */
+      }
+      .warp div {
+        background: rgb(152, 216, 250);
+        border: 1px solid #eee;
+        grid-area: n1 /  n1 / n4 / n4;
+        /* width: 200px;
+        height: 200px; */
+        /* height: 10px;
+        width: 10px; */
+        /* width: 100px; */
+      }
+      .warp div:first-child{
+        grid-area: header;
+        place-self: start;
+      }
+    </style>
+  </body>
+</html>
