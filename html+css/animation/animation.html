@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animation</title>
+  </head>
+  <body>
+    <div>play 3s steps(4, end) infinite</div>
+    <div>animation: play 3s linear infinite</div>
+    <div>play 3s steps(10,end) infinite 0 alternate</div>
+    <div>play 3s steps(10,end) infinite 0 alternate-reverse</div>
+    <div>play 3s steps(10,end) 4 0 alternate-reverse forwards</div>
+    <div>play 3s steps(10,end) 4 0 alternate-reverse backwards</div>
+    <div>play 3s steps(10, end) 4 alternate-reverse both</div>
+    <style>
+      body > div {
+        background: orange;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 1em;
+        width: 30vw;
+        font-size: 10px;
+        margin-bottom: 10px;
+      }
+      body > div:hover {
+        animation-play-state: paused!important;
+        background: orangered;
+      }
+      body > div:first-of-type {
+        animation: play 3s steps(10, end) infinite;
+      }
+      body > div:nth-of-type(2) {
+        animation: play 3s linear infinite;
+      }
+      body > div:nth-of-type(3) {
+        animation: play 3s steps(10, end) infinite alternate;
+      }
+      body > div:nth-of-type(4) {
+        animation: play 3s steps(10, end) infinite alternate-reverse;
+      }
+      body > div:nth-of-type(5) {
+        animation: play 3s steps(10, end) 4 alternate-reverse forwards;
+      }
+      body > div:nth-of-type(6) {
+        animation: play 3s steps(10, end) 4 alternate-reverse backwards;
+      }
+      body > div:nth-of-type(7) {
+        animation: play 3s steps(10, end) 4 alternate-reverse both;
+      }
+
+      @keyframes play {
+        form {
+          width: 30vw;
+        }
+        to {
+          width: 90vw;
+        }
+      }
+    </style>
+  </body>
+</html>
