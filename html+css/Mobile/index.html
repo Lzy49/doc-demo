@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,viewport-fit=cover"
+    />
+    <title>移动端test</title>
+  </head>
+  <body>
+    <div class="fixed"></div>
+    <div id="box"></div>
+    <div id="test1">看不到我</div>
+    <div id="test2" style="width: 100vw; background: red">
+      我是100vw 我的宽度是 <span></span>
+    </div>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        background: #000;
+      }
+      .fixed {
+        position: fixed;
+        left: 0;
+        width: 100vw;
+        height: 10vh;
+        background: red;
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+      }
+    </style>
+    <script>
+      document.querySelector('#test1').style.marginLeft =
+        window.innerWidth + 'px';
+        
+      document.querySelector('#box').innerHTML = `
+        '网页宽度',${document.body.clientWidth} <br>
+        '网页视区', ${window.innerWidth} <br>
+        '浏览器宽度', ${window.outerWidth}<br>
+        '显示器宽', ${screen.width}<br>
+        '当前css像素 与 设备像素比',${window.devicePixelRatio}
+      `;
+      document.querySelector('#test2>span').innerHTML = getComputedStyle(
+        document.querySelector('#test2')
+      ).width;
+    </script>
+  </body>
+</html>
