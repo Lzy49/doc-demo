@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>重绘 & 回流</title>
+  </head>
+  <body>
+    <style>
+      .test3 {
+        display: none;
+        grid-template: 60px / repeat(10, 60px);
+        gap: 10px;
+      }
+      .test3 > div {
+        height: 60px;
+        width: 60px;
+        border: 1px solid #000;
+        margin: 10px;
+      }
+      .test3 > div > div {
+        width: 30px;
+        height: 30px;
+        background-color: pink;
+      }
+      .test3 > div > div {
+        animation: test3 linear 1s infinite alternate;
+      }
+      @keyframes test3 {
+        from {
+          width: 30px;
+          height: 30px;
+        }
+        to {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    </style>
+    <div class="warp">
+      <div class="test3"></div>
+    </div>
+    <p>请开启f12</p>
+    <button onclick="test1()">开始测试 不缓存 clientWidth</button>
+    <button onclick="test2()">开始测试 缓存 clientWidth</button>
+    <button onclick="test3()">测试 用 css3硬件加速 来处理动画</button>
+    <script src="./fps.js"></script>
+    <script>
+      // 开始测试 不缓存 clientWidth
+      function test1() {
+        let now = Date.now();
+        for (let v = 0; v < 1000; v++) {
+          console.log(document.querySelector('.warp').clientWidth);
+        }
+        console.log(
+          '在 for 中 打印当时获取了 clientWidth 执行 1000次使用时间',
+          Date.now() - now
+        );
+      }
+      // 开始测试 缓存 clientWidth
+      function test2() {
+        let now = Date.now();
+        let width = document.querySelector('.warp').clientWidth;
+        for (let v = 0; v < 1000; v++) {
+          console.log(width);
+        }
+        console.log(
+          '在 for 打印外边获取的 clientWidth 执行 1000次使用时间',
+          Date.now() - now
+        );
+      }
+      // 测试 没用 css3硬件加速 来处理动画
+      let dom3 = document.querySelector('.test3');
+      function test3() {
+        // 此处没做优化的原因是浏览器已经帮我们做了
+        for (let v = 0; v < 50; v++) {
+          let d = document.createElement('div');
+          d.append(document.createElement('div'));
+          dom3.append(d);
+        }
+        // closeLoop();
+        getFps();
+        dom3.style.display = 'grid';
+      }
+    </script>
+  </body>
+</html>
