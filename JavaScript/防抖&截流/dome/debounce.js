@@ -5,7 +5,6 @@
  * @param {Boolean} immed true 表立即执行，false 表非立即执行
  */
 export default function (fun, delay = 0, immed = true) {
-  const context = this;
   let now = 0;
   if (immed) {
     return (...ags) => {
@@ -14,14 +13,14 @@ export default function (fun, delay = 0, immed = true) {
         return;
       }
       now = n;
-      return fun.apply(context, ags);
+      return fun.apply(this, ags);
     };
   } else {
     return (...ags) => {
       let timeout = null;
       timeout && clearTimeout(timeout);
       timeout = setTimeout(() => {
-        fun.apply(context, ags);
+        fun.apply(this, ags);
       }, delay);
     };
   }
