@@ -1,0 +1,16 @@
+{
+  "name": "dome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "debounce.js",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.5"
+  }
+}
