@@ -1,4 +1,4 @@
-import { reactive, effect } from '../index';
+import { reactive, effect, ref, isRef } from '../index';
 describe('reactive', () => {
   it('reactive 基本使用', () => {
     const store = reactive({
@@ -29,5 +29,41 @@ describe('reactive', () => {
     });
     expect(val).toBe(0);
     expect(val2).toBe(0);
+  });
+});
+describe('isRef', () => {
+  test('isRef 基本值', () => {
+    const v = ref(10);
+    expect(isRef(v)).toBe(true);
+    expect(isRef('123')).toBe(false);
+  });
+  test('isRef 引用值', () => {
+    const v = ref({ age: 10 });
+    expect(isRef(v)).toBe(true);
+  });
+});
+describe('ref', () => {
+  test('ref 基本值', () => {
+    const num = ref(10);
+    let result = 0;
+    effect(() => {
+      result = num.value + 100;
+    });
+    expect(result).toBe(110);
+    num.value = 101;
+    expect(result).toBe(201);
+  });
+  test('ref 引用值', () => {
+    const user = ref({
+      age: 19,
+      name: '刘谋'
+    });
+    let userInfo = '';
+    effect(() => {
+      userInfo = `姓名：${user.value.name}，年纪${user.value.age}`;
+    });
+    expect(userInfo).toBe(`姓名：刘谋，年纪19`);
+    user.value.age = 20;
+    expect(userInfo).toBe(`姓名：刘谋，年纪20`);
   });
 });
