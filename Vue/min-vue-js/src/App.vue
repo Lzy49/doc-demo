@@ -1,11 +1,9 @@
 <script setup>
-import bbb from './bbb.vue';
-const age = 10;
+import Computed from './test/Computed.vue';
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <bbb />
+  <Computed />
 </template>
 
 <style>
