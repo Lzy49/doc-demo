@@ -1,49 +1,47 @@
-import { trigger, track, effect } from './effect';
-// computed
-export const computed = (option) => {
+import { effect, trigger, track } from './effect';
+// 我要理解 computed 是怎么运行的。
+export const computed = (getterOroption) => {
   let getter, setter;
-  if (typeof option === 'function') {
-    getter = option;
+  if (typeof getterOroption === 'function') {
+    getter = getterOroption;
+    setter = () => console.warn('computed 没有定义 setter');
   } else {
-    getter = option.get;
-    setter = option.set;
+    getter = getterOroption.get;
+    setter = getterOroption.set;
   }
   return new ComputedRefImpl(getter, setter);
 };
-
 class ComputedRefImpl {
   constructor(getter, setter) {
-    this._value = null;
-    this._setter = setter;
-    this._dirty = true;
-    /**
-     * 因为值在未被调用之前不会执行，所以需要将 依赖缓存起来，等到 get 时再执行。
-     */
-    this.effect = effect(
+    this._val = null; // 值
+    this._dirty = true; // 值 与 getter 运行的结果不符时 设为 true
+    // getter 会得到一个值 ，这个值是 computed 的值
+    this.getter = effect(
       () => {
-        this._value = getter();
+        this._val = getter();
       },
       {
         lazy: true,
         scheduler: () => {
-          // 多处使用 computed 值，值只会在数据全部更改后才会执行。
-          if (!this._dirty) {
+          if ((this._dirty === false)) {
             this._dirty = true;
             trigger(this, 'value');
           }
         }
       }
     );
+    this.setter = setter;
+  }
+  set value(v){
+    return this.setter(v)
   }
   get value() {
-    if (this._dirty) {
-      this._dirty = false;
-      this.effect();
-    }
+    // 这里不能每次都获取值，这样的话就没有缓存机制了。应该是数据发生改变后，获取。
     track(this, 'value')
-    return this._value;
-  }
-  set value(val = null) {
-    return this._setter(val);
+    if (this._dirty === true) {
+      this._dirty = false;
+      this.getter();
+    }
+    return this._val;
   }
 }

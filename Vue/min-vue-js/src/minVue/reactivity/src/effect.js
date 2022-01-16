@@ -11,6 +11,7 @@ export const effect = (fun, options = {}) => {
   const effectFn = () => {
     // 将作用域的函数收集到，然后执行并给所有响应值添加上。
     activeEffect = fun;
+    activeEffect.scheduler = options.scheduler; // 调度时机,如果没有立即执行，可以被手动执行。
     try {
       return fun();
     } catch (res) {
@@ -19,7 +20,7 @@ export const effect = (fun, options = {}) => {
     activeEffect = null;
   };
   !options.lazy && effectFn(); // 没有配置lazy 直接执行
-  effectFn.scheduler = options.scheduler; // 调度时机,如果没有立即执行，可以被手动执行。
+
   return effectFn;
 };
 
