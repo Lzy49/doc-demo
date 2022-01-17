@@ -46,5 +46,3 @@ computed 的 set 函数值需要执行以下 传入的 setter 函数即可。其
 ### computed 做为一个值 被其他 computed 依赖
 
 computed 值不单单是一个依赖其他值变化的值。而且是一个被依赖值。在它的值发生改变时应该通知所有其他值，要一起做出反应。所以 在 `scheduler` 要`trigger`其依赖值。
-
-@todo computed 依赖两个值 通知，是否只会通知一个值。
