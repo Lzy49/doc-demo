@@ -1,0 +1,10 @@
+import log from './module.js';
+import './assets/main.css';
+import b from '../doc/webpack-order篇.md';
+const button = document.createElement('button');
+button.innerText = '你好';
+button.addEventListener('click', log);
+document.body.append(button);
+document.body.innerHTML = b;
+const age = 20;
+console.log(age);
