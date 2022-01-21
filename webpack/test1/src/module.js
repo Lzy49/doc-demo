@@ -1,5 +1,9 @@
 import IMG0 from './assets/IMG0.jpg';
 import './assets/module.css';
+
+export const fun = ()=>{
+  console.log('做好事情就回来')
+}
 const img = new Image();
 img.src = IMG0;
 img.onload = (e) => {

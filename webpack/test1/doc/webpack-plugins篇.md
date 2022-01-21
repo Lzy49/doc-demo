@@ -7,7 +7,7 @@ webpack 插件 配置在`plugins` 中。
 ## 常用插件与插件使用场景。
 
 - clean-webpack-plugin：可以帮助我们自动情况 dist 目录的插件；
-- html-webpack-plugin： 自动生成使用打包结果的 HTML；
+- html-webpack-plugin： 自动生成使用打包结果的 HTML；创建多个可以打包出多个 入口 html。
 - copy-webpack-plungin：将已经存在的单个文件或整个目录复制到构建目录。
 
 ```cjs
@@ -40,4 +40,3 @@ webpack 插件 配置在`plugins` 中。
   ];
 }
 ```
-
