@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex:auto | 0 | 1 的区别</title>
+  </head>
+  <body>
+    <h2>flex:none 多元素测试</h2>
+    <div class="box box-0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <h2>flex:auto 多元素测试</h2>
+    <div class="box box-1">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <h2>flex:1 多元素测试</h2>
+    <div class="box box-2">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <h2>flex:0 多元素测试</h2>
+    <div class="box box-3">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <style>
+      .box {
+        display: flex;
+        border: 1px solid red;
+      }
+      .box div {
+        background: yellow;
+        height: 20px;
+      }
+      .box-0 div:nth-child(2),
+      .box-1 div:nth-child(2),
+      .box-2 div:nth-child(2),
+      .box-3 div:nth-child(2) {
+        background: greenyellow;
+        width: 100px;
+      }
+      .box-0 > div {
+        flex: none;
+      }
+      .box-1 > div {
+        flex: auto;
+      }
+      .box-2 > div {
+        flex: 1;
+      }
+      .box-3 > div {
+        flex: 0;
+      }
+    </style>
+    <h2>flex:auto 单元素测试</h2>
+    <div class="box box-4">
+      <div></div>
+    </div>
+    <h2>flex:1 单元素测试</h2>
+    <div class="box box-5">
+      <div></div>
+    </div>
+    <h2>flex:0 单元素测试</h2>
+    <div class="box box-6">
+      <div></div>
+    </div>
+
+    <h2>flex:none 单元素测试</h2>
+    <div class="box box-7">
+      <div></div>
+    </div>
+    <style>
+      .box-4 > div,
+      .box-5 > div,
+      .box-6 > div,
+      .box-7 > div {
+        background: greenyellow;
+        width: 50%;
+      }
+      .box-4 div {
+        flex: auto;
+      }
+
+      .box-5 div {
+        flex: 1;
+      }
+      .box-6 div {
+        flex: 0;
+      }
+      .box-7 div{
+        flex:none
+      }
+    </style>
+  </body>
+</html>
