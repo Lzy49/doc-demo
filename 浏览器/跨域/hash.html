@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      <strong>目的</strong> 测试 hash 通讯
+    </p>
+    <iframe width="1000" height="500" frameborder="0"></iframe>
+    <button>to new page</button>
+    <!-- 通过 hash 修改 iframe 地址 -->
+    <script>
+      link = 'http://oss.lzy49.cn/navie-ui/index.html#';
+      hash = '/admin/component/configPage';
+      document.querySelector('iframe').src = link;
+      document.querySelector('button').addEventListener('click', toNewPage);
+      function toNewPage() {
+        document.querySelector('iframe').src = link + hash;
+      }
+    </script>
+  </body>
+</html>
